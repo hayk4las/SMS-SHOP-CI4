@@ -16,9 +16,12 @@ class KelolaPelangganController extends BaseController
     // Tampilkan data pelanggan
     public function index()
     {
-        $data['pelanggan'] = $this->pelangganModel->getPelanggan();
+        $perPage = 5; // Jumlah data per halaman
+        $data['pelanggan'] = $this->pelangganModel->getPelanggan($perPage);
+        $data['pager'] = $this->pelangganModel->pager; // Objek pager
         return view('kelola_pelanggan', $data);
     }
+    
 
     // Tampilkan form tambah pelanggan
     public function tambah()

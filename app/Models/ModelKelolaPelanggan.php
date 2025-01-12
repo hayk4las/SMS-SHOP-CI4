@@ -11,9 +11,10 @@ class ModelKelolaPelanggan extends Model
     protected $allowedFields = ['id_customer', 'nama_customer', 'telepon']; // Kolom yang dapat diisi
 
     // Ambil semua data pelanggan
-    public function getPelanggan()
-    {
-        return $this->findAll();
-    }
+    public function getPelanggan($perPage = 5)
+{
+    return $this->paginate($perPage);
+}
+
 
 }

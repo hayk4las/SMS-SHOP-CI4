@@ -13,6 +13,75 @@
     <link href="<?= base_url(); ?>/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="<?= base_url(); ?>/css/sb-admin-2.min.css" rel="stylesheet">
+
+    <style>
+        /* Styling untuk pagination */
+        .pagination {
+            display: flex;
+            justify-content: center;
+            padding: 10px 0;
+        }
+
+        .pagination a,
+        .pagination span {
+            color: #4a4a4a;
+            padding: 10px 20px;
+            margin: 0 8px;
+            border: 1px solid #dcdcdc;
+            border-radius: 50px;
+            text-decoration: none;
+            background-color: #fff;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .pagination a:hover,
+        .pagination .active {
+            background: linear-gradient(to right, #007bff, #00c6ff);
+            color: white;
+            border-color: #00c6ff;
+            box-shadow: 0 4px 15px rgba(0, 200, 255, 0.4);
+            /* Efek bayangan lebih menonjol */
+            transform: scale(1.1);
+            /* Efek perbesaran tombol */
+        }
+
+        .pagination .disabled {
+            color: #aaa;
+            background-color: #f8f9fa;
+            border-color: #ddd;
+            pointer-events: none;
+        }
+
+        .pagination .prev,
+        .pagination .next {
+            background-color: #00c6ff;
+            color: white;
+            border-radius: 50px;
+            padding: 8px 16px;
+            font-weight: 700;
+            border: none;
+        }
+
+        .pagination .prev:hover,
+        .pagination .next:hover {
+            background-color: #007bff;
+            box-shadow: 0 4px 15px rgba(0, 0, 255, 0.3);
+        }
+
+        .pagination .first,
+        .pagination .last {
+            background-color: #6c757d;
+            color: white;
+            border-radius: 50px;
+        }
+
+        .pagination .first:hover,
+        .pagination .last:hover {
+            background-color: #007bff;
+        }
+    </style>
 </head>
 
 <body id="page-top">
@@ -125,7 +194,7 @@
                                 </thead>
                                 <tbody>
                                     <?php if (!empty($suppliers)): ?>
-                                        <?php $no = 1;
+                                        <?php $no = 1 + (5 * ($pager->getCurrentPage() - 1));
                                         foreach ($suppliers as $supplier): ?>
                                             <tr>
                                                 <td><?= $no++; ?></td>
@@ -152,6 +221,10 @@
                                 </tbody>
                             </table>
                         </div>
+                        <div class="mt-4 d-flex justify-content-center">
+                            <?= $pager->links() ?>
+                        </div>
+
                     </div>
                 </div>
                 <!-- End Page Content -->

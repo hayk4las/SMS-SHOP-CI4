@@ -12,8 +12,14 @@ class KelolaSupplierController extends BaseController
         // Instansiasi model
         $model = new ModelKelolaSupplier();
 
-        // Ambil semua data supplier
-        $data['suppliers'] = $model->findAll(); // Gunakan findAll()
+        // Jumlah data per halaman
+        $perPage = 5;
+
+        // Ambil data dengan pagination
+        $data['suppliers'] = $model->paginate($perPage);
+
+        // Kirim pagination links ke view
+        $data['pager'] = $model->pager;
 
         // Kirim data ke view
         return view('kelola_supplier', $data);
