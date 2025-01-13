@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Waktu pembuatan: 12 Jan 2025 pada 06.32
+-- Waktu pembuatan: 13 Jan 2025 pada 16.06
 -- Versi server: 10.4.32-MariaDB
 -- Versi PHP: 8.2.12
 
@@ -39,8 +39,17 @@ CREATE TABLE `barang_keluar` (
 --
 
 INSERT INTO `barang_keluar` (`id_keluar`, `imei_hp`, `id_customer`, `tanggal_keluar`) VALUES
-('FK001', '138234879123765', 'P001', '2025-01-09'),
-('FK002', '357324648301728', 'P002', '2025-01-02');
+('FK001', '138234879123765', 'P001', '2025-01-02'),
+('FK002', '357324648301728', 'P002', '2025-01-10'),
+('FK003', '392847560192873', 'P005', '2025-01-04'),
+('FK004', '493820175238479', 'P003', '2025-01-08'),
+('FK005', '493862740192836', 'P003', '2025-01-17'),
+('FK006', '526739085012365', 'P013', '2025-01-15'),
+('FK007', '526739085014569', 'P012', '2025-01-03'),
+('FK008', '637291504785112', 'P019', '2025-01-17'),
+('FK009', '734829172384679', 'P016', '2025-01-09'),
+('FK010', '827364910283746', 'P010', '2025-01-08'),
+('FK011', '827364910283873', 'P001', '2025-01-15');
 
 --
 -- Trigger `barang_keluar`
@@ -83,7 +92,11 @@ INSERT INTO `barang_masuk` (`id_masuk`, `imei_hp`, `id_supplier`, `tanggal_masuk
 ('FM010', '827364910283746', 'SUP010', '2025-01-10'),
 ('FM011', '827364910283873', 'SUP016', '2025-01-07'),
 ('FM012', '526739085014569', 'SUP003', '2025-01-07'),
-('FM013', '734829172384679', 'SUP012', '2025-01-05');
+('FM013', '734829172384679', 'SUP012', '2025-01-05'),
+('FM014', '293847563928746', 'SUP006', '2025-01-06'),
+('FM015', '738947562039483', 'SUP014', '2025-01-07'),
+('FM016', '827364710283746', 'SUP015', '2025-01-08'),
+('FM017', '828374950238736', 'SUP016', '2025-01-09');
 
 -- --------------------------------------------------------
 
@@ -102,14 +115,28 @@ CREATE TABLE `customer` (
 --
 
 INSERT INTO `customer` (`id_customer`, `nama_customer`, `telepon`) VALUES
-('P000', 'Andi Wijaya', '081234567890'),
-('P001', 'Siti Rahma', '081298765432'),
-('P002', 'Budi Santosa', '081345678912'),
-('P003', 'Dewi Kusuma', '081567890123'),
-('P004', 'Rizky Pratama', '081678901234'),
-('P005', 'Haykal Aditya', '085602505754'),
-('P006', 'Ruben Amorim', '081966023547'),
-('P007', 'Rasmus Holjund', '086502352145');
+('P001', 'Andi Setiawan', '081234567890'),
+('P002', 'Budi Santoso', '081234512345'),
+('P003', 'Citra Lestari', '081278945612'),
+('P004', 'Dewi Anggraini', '081334567812'),
+('P005', 'Eko Prasetyo', '081245678901'),
+('P006', 'Fitriani Putri', '081267894561'),
+('P007', 'Gilang Saputra', '081298745612'),
+('P008', 'Hendra Kurniawan', '081367845679'),
+('P009', 'Intan Permatasari', '081312456789'),
+('P010', 'Joko Widodo', '081378945612'),
+('P011', 'Kartini Ayu', '081334556677'),
+('P012', 'Lestari Sari', '081223344556'),
+('P013', 'Maya Sari', '081245676789'),
+('P014', 'Niko Pratama', '081356789123'),
+('P015', 'Oka Dharmawan', '081378934512'),
+('P016', 'Putri Melati', '081345612378'),
+('P017', 'Rizky Maulana', '081267845612'),
+('P018', 'Siti Aisyah', '081378934567'),
+('P019', 'Taufik Hidayat', '081389123456'),
+('P020', 'Umar Faruq', '081245612378'),
+('P021', 'Ruben Amorim', '089505694657'),
+('P022', 'Haykal Aditya', '085602515454');
 
 -- --------------------------------------------------------
 
@@ -132,6 +159,7 @@ CREATE TABLE `hp` (
 
 INSERT INTO `hp` (`imei_hp`, `merk_hp`, `tipe_hp`, `memory_hp`, `warna_hp`, `harga_hp`) VALUES
 ('138234879123765', 'ASUS', 'Zenfone 9', '8GB/128GB', 'Hitam', 9000000),
+('293847563928746', 'SONY', 'Sony Xperia 1', '8GB/128GB', 'Putih', 7000000),
 ('357324648301728', 'XIAOMI', 'Redmi Note 12', '8GB/128GB', 'Hitam', 3000000),
 ('392847560192873', 'HUAWEI', 'P50 Pro', '8GB/256GB', 'Silver', 11000000),
 ('493820175238479', 'REALME', 'Realme 11', '8GB/256GB', 'Biru', 4000000),
@@ -140,8 +168,11 @@ INSERT INTO `hp` (`imei_hp`, `merk_hp`, `tipe_hp`, `memory_hp`, `warna_hp`, `har
 ('526739085014569', 'SAMSUNG', 'Galaxy S24 Ultra', '8GB/128GB', 'Silver', 12000000),
 ('637291504785112', 'VIVO', 'Vivo V23 5G', '12GB/256GB', 'Silver', 7000000),
 ('734829172384679', 'LG', 'LG V60', '8GB/128GB', 'Hitam', 5000000),
+('738947562039483', 'BLACKBERRY', 'BlackBerry Key2', '6GB/64GB', 'Merah', 4500000),
+('827364710283746', 'HTC', 'HTC U12+', '6GB/128GB', 'Biru', 4000000),
 ('827364910283746', 'GOOGLE', 'Pixel 7', '8GB/128GB', 'Putih', 9500000),
 ('827364910283873', 'IPHONE', 'Iphone 15', '8/128', 'Hitam', 12000000),
+('828374950238736', 'APPLE', 'iPhone 13 Pro', '6GB/256GB', 'Black', 12000000),
 ('928347659124563', 'OPPO', 'F19 Pro', '8GB/128GB', 'Hijau', 5000000),
 ('982374659102736', 'LENOVO', 'Legion Phone 2', '16GB/512GB', 'Hitam', 15000000);
 
@@ -178,7 +209,8 @@ INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `email`, `telepon`, `ala
 ('SUP013', 'SONY', 'supplier@sony.com', '081234567901', 'Denpasar'),
 ('SUP014', 'BLACKBERRY', 'supplier@blackberry.com', '081234567902', 'Tangerang'),
 ('SUP015', 'HTC', 'supplier@htc.com', '081234567903', 'Medan'),
-('SUP016', 'APPLE', 'supplier@apple.com', '081234567904', 'Jakarta');
+('SUP016', 'APPLE', 'supplier@apple.com', '081234567904', 'Jakarta'),
+('SUP017', 'ADVAN', 'supplier@advan.com', '087602356547', 'Pekalongan\r\n');
 
 -- --------------------------------------------------------
 
@@ -189,14 +221,6 @@ INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `email`, `telepon`, `ala
 CREATE TABLE `temp_hapus_imei` (
   `imei_hp` varchar(16) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data untuk tabel `temp_hapus_imei`
---
-
-INSERT INTO `temp_hapus_imei` (`imei_hp`) VALUES
-('138234879123765'),
-('357324648301728');
 
 -- --------------------------------------------------------
 
@@ -215,8 +239,8 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `username`, `password`) VALUES
-(1, 'admin', '202cb962ac59075b964b07152d234b70'),
-(2, 'haykal', '81dc9bdb52d04dc20036dbd8313ed055');
+(1, 'haykal', '202cb962ac59075b964b07152d234b70'),
+(2, 'admin', '0192023a7bbd73250516f069df18b500');
 
 --
 -- Indexes for dumped tables
@@ -276,7 +300,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT untuk tabel `user`
 --
 ALTER TABLE `user`
-  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_user` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Ketidakleluasaan untuk tabel pelimpahan (Dumped Tables)
