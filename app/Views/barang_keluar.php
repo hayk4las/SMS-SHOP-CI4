@@ -258,8 +258,8 @@
                             </table>
                         </div>
                         <!-- Pagination -->
-                        <div class="mt-3">
-                            <?= $pager->links('default', 'default_full'); ?>
+                        <div class="pagination-container mt-3">
+                            <?= $pager; ?>
                         </div>
                     </div>
                 </div>

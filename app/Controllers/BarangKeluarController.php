@@ -9,30 +9,33 @@ class BarangKeluarController extends BaseController
     public function index(): string
     {
         $model = new ModelBarangKeluar();
-        $currentPage = $this->request->getVar('page') ? $this->request->getVar('page') : 1;
 
-        // Ambil parameter tanggal
+        // Ambil halaman saat ini dari URL, default halaman 1
+        $currentPage = $this->request->getVar('page') ? (int) $this->request->getVar('page') : 1;
+
+        // Ambil parameter tanggal dari input
         $startDate = $this->request->getVar('startDate');
         $endDate = $this->request->getVar('endDate');
 
-        // Hitung total data
-        $totalData = $model->getBarangKeluarCount($startDate, $endDate);
-
-        // Tentukan limit dan offset
+        // Tentukan jumlah data per halaman
         $limit = 5;
         $offset = ($currentPage - 1) * $limit;
 
-        // Ambil data dari model dengan filter tanggal
+        // Ambil data barang keluar sesuai halaman
         $data['barang_keluar'] = $model->getBarangKeluar($startDate, $endDate, $limit, $offset);
 
-        // Pagination
-        $data['pager'] = \Config\Services::pager();
-        $data['totalData'] = $totalData;
-        $data['currentPage'] = $currentPage;
+        // Hitung total data
+        $totalItems = $model->getCountBarangKeluar($startDate, $endDate);
 
-        // Kirim data ke view
+        // Gunakan service Pager
+        $pager = \Config\Services::pager();
+
+        // Siapkan pagination links
+        $data['pager'] = $pager->makeLinks($currentPage, $limit, $totalItems, 'default_full');
+
         return view('barang_keluar', $data);
     }
+
 
     public function edit($id)
     {

@@ -16,28 +16,33 @@ class ModelBarangKeluar extends Model
             ->join('customer', 'customer.id_customer = barang_keluar.id_customer')
             ->join('hp', 'hp.imei_hp = barang_keluar.imei_hp');
 
-        // Jika ada filter tanggal, tambahkan ke query
+        // Filter tanggal jika ada
         if ($startDate && $endDate) {
             $builder->where('tanggal_keluar >=', $startDate)
                 ->where('tanggal_keluar <=', $endDate);
         }
 
-        return $builder->limit($limit, $offset)->findAll();
+        // Tambahkan limit dan offset
+        $builder->limit($limit, $offset);
+
+        return $builder->get()->getResultArray();
     }
 
-    public function getBarangKeluarCount($startDate = null, $endDate = null)
+
+    public function getCountBarangKeluar($startDate = null, $endDate = null)
     {
-        $builder = $this->select('barang_keluar.*, customer.nama_customer, hp.merk_hp, hp.tipe_hp, hp.harga_hp')
+        $builder = $this->select('COUNT(*) as total')
             ->join('customer', 'customer.id_customer = barang_keluar.id_customer')
             ->join('hp', 'hp.imei_hp = barang_keluar.imei_hp');
 
-        // Jika ada filter tanggal, tambahkan ke query
+        // Filter tanggal jika ada
         if ($startDate && $endDate) {
             $builder->where('tanggal_keluar >=', $startDate)
                 ->where('tanggal_keluar <=', $endDate);
         }
 
-        return $builder->countAllResults();
+        $result = $builder->get()->getRow();
+        return $result ? $result->total : 0;
     }
 
     public function updateBarangKeluar($id, $data)
